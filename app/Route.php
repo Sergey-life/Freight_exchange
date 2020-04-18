@@ -10,6 +10,6 @@ class Route extends Model
 
     public function loads()
     {
-        return $this->hasMany('App\Load');
+        return $this->hasMany('App\Load', 'id', 'load_id');
     }
 }

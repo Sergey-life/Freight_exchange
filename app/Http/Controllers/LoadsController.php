@@ -15,8 +15,8 @@ class LoadsController extends Controller
      */
     public function index()
     {
-       Load::latest()->get();
-
+       $view = [Load::latest()->get(), Route::latest()->get()];
+       return $view;
     }
 
 
@@ -33,7 +33,16 @@ class LoadsController extends Controller
         $load->weight = $request->weight;
         $load->save();
 
-        return $load;
+        $route = new Route();
+        $route->from = $request->from;
+        $route->to = $request->to;
+        $route->date = $request->date;
+        $route->load_id = $load->id;
+        $route->save();
+
+        $cargo_data = [$load, $route];
+
+        return $cargo_data;
     }
 
     /**
@@ -46,10 +55,19 @@ class LoadsController extends Controller
     public function update(Request $request, $id)
     {
         $load = Load::findOrFail($id);
-        $load->completed = $request->completed;
+        $load->name = $request->name;
+        $load->weight = $request->weight;
         $load->update();
 
-        return $load;
+        $route = Route::findOrFail($id);
+        $route->from = $request->from;
+        $route->to = $request->to;
+        $route->date = $request->date;
+        $route->update();
+
+        $cargo_update = [$load, $route];
+
+        return $cargo_update;
     }
 
     /**
