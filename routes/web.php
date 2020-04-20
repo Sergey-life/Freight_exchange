@@ -11,8 +11,7 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-Route::get( 'welcome', 'LoadController@store');
+Route::get('/', function () {
+    return view('welcome');
+});
 

@@ -15,8 +15,10 @@ class LoadsController extends Controller
      */
     public function index()
     {
-       $view = [Load::latest()->get(), Route::latest()->get()];
-       return $view;
+       $view_loads = [Load::latest()->get(), Route::latest()->get()];
+
+       return $view_loads;
+//           return Load::latest()->get();
     }
 
 
@@ -80,6 +82,9 @@ class LoadsController extends Controller
     {
         $load = Load::findOrFail($id);
         $load->delete();
+
+        $route = Route::findOrFail($id);
+        $route->delete();
 
         return 204;
     }
