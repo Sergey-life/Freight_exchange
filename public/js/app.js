@@ -1961,7 +1961,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      loads: []
+      loads: [] // routes: []
+
     };
   },
   methods: {
@@ -1969,7 +1970,8 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/loads/').then(function (response) {
-        _this.routes = response.data;
+        // this.routes = response.data
+        _this.loads = response.data;
         console.log(response);
       })["catch"](function (err) {
         console.log(err);
@@ -37634,29 +37636,26 @@ var render = function() {
             _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "tasks-list" }, [
-              _c("table", { staticClass: "table" }, [
-                _c("thead", [
-                  _c(
-                    "tr",
-                    [
-                      _vm._l(_vm.loads, function(load) {
-                        return _c(
-                          "th",
-                          { key: load.id, attrs: { scope: "col" } },
-                          [_vm._v(_vm._s(load.name))]
-                        )
-                      }),
+              _c(
+                "table",
+                { staticClass: "table" },
+                _vm._l(_vm.loads, function(load) {
+                  return _c("thead", { key: load.id }, [
+                    _c("tr", [
+                      _c("th", { attrs: { scope: "col" } }, [
+                        _vm._v(_vm._s(load.name))
+                      ]),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("load")]),
+                      _c("th", { attrs: { scope: "col" } }),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("load")]),
+                      _c("th", { attrs: { scope: "col" } }),
                       _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }, [_vm._v("load")])
-                    ],
-                    2
-                  )
-                ])
-              ]),
+                      _c("th", { attrs: { scope: "col" } })
+                    ])
+                  ])
+                }),
+                0
+              ),
               _vm._v(" "),
               _c("img", {
                 staticClass: "img-responsive",

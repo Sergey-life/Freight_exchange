@@ -15,10 +15,13 @@ class LoadsController extends Controller
      */
     public function index()
     {
-       $view_loads = [Load::latest()->get(), Route::latest()->get()];
+//        Этот вариант выводит шаблоне Vue!!!
+//        return Load::latest()->get();
 
-       return $view_loads;
-//           return Load::latest()->get();
+        // Этот нет! Выводиться только в консоле.
+        $view_loads = [ 'loads' => Load::latest()->get(), 'routes' => Route::latest()->get()];
+
+        return $view_loads;
     }
 
 

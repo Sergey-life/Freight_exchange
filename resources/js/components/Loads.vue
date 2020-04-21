@@ -14,12 +14,12 @@
                         </div>
                         <div class="tasks-list">
                             <table class="table">
-                                <thead>
+                                <thead v-for="load in loads" :key="load.id">
                                 <tr>
-                                    <th scope="col" v-for="load in loads" :key="load.id">{{ load.name }}</th>
-                                    <th scope="col">load</th>
-                                    <th scope="col">load</th>
-                                    <th scope="col">load</th>
+                                    <th scope="col">{{ load.name }}</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
                                 </tr>
                                 </thead>
                                 </table>
@@ -50,14 +50,16 @@
         },
         data () {
             return {
-                loads: []
+                loads: [],
+                // routes: []
             }
         },
         methods: {
             fetchData () {
                 axios.get('/api/loads/')
                     .then((response) => {
-                        this.routes = response.data
+                        // this.routes = response.data
+                        this.loads = response.data
                         console.log(response)
                     })
                     .catch((err) => {
