@@ -16,7 +16,7 @@
                             <table class="table">
                                 <thead v-for="load in loads" :key="load.id">
                                 <tr>
-                                    <th scope="col">{{ load.name }}</th>
+                                    <th scope="col">{{load.loads.name}}</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>

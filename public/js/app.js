@@ -37643,7 +37643,7 @@ var render = function() {
                   return _c("thead", { key: load.id }, [
                     _c("tr", [
                       _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(load.name))
+                        _vm._v(_vm._s(load.loads.name))
                       ]),
                       _vm._v(" "),
                       _c("th", { attrs: { scope: "col" } }),
