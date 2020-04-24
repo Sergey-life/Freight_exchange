@@ -1961,8 +1961,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      loads: [] // routes: []
-
+      loads: [],
+      routes: []
     };
   },
   methods: {
@@ -1970,9 +1970,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/loads/').then(function (response) {
-        // this.routes = response.data
-        _this.loads = response.data;
-        console.log(response);
+        _this.routes = response.data['routes'];
+        _this.loads = response.data['loads'];
+        console.log(response.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -37639,11 +37639,11 @@ var render = function() {
               _c(
                 "table",
                 { staticClass: "table" },
-                _vm._l(_vm.loads, function(load) {
-                  return _c("thead", { key: load.id }, [
+                _vm._l(_vm.routes, function(route) {
+                  return _c("thead", { key: route.id }, [
                     _c("tr", [
                       _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(load.loads.name))
+                        _vm._v(_vm._s(route.date))
                       ]),
                       _vm._v(" "),
                       _c("th", { attrs: { scope: "col" } }),

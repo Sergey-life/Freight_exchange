@@ -14,9 +14,9 @@
                         </div>
                         <div class="tasks-list">
                             <table class="table">
-                                <thead v-for="load in loads" :key="load.id">
+                                <thead v-for="route in routes" :key="route.id">
                                 <tr>
-                                    <th scope="col">{{load.loads.name}}</th>
+                                    <th scope="col">{{ route.date }}</th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
                                     <th scope="col"></th>
@@ -51,16 +51,16 @@
         data () {
             return {
                 loads: [],
-                // routes: []
+                routes: []
             }
         },
         methods: {
             fetchData () {
                 axios.get('/api/loads/')
                     .then((response) => {
-                        // this.routes = response.data
-                        this.loads = response.data
-                        console.log(response)
+                        this.routes = response.data['routes']
+                        this.loads = response.data['loads']
+                        console.log(response.data)
                     })
                     .catch((err) => {
                         console.log(err)

@@ -18,12 +18,13 @@ class LoadsController extends Controller
 //        Этот вариант выводит шаблоне Vue!!!
 //        return Load::latest()->get();
 
-        // Этот нет! Выводиться только в консоле.
-        $view_loads = [ 'loads' => Load::latest()->get(), 'routes' => Route::latest()->get()];
-
-        return $view_loads;
+        // Этот нет! Выводиться только в консоле
+//        $view_loads = [];
+//        $view_loads[] = Load::latest()->get() and Route::latest()->get();
+//        $route = Route::latest()->get();
+//        array_push($view_loads, $route);
+        return $view_loads = ['loads' => Load::latest()->get(), 'routes' => Route::latest()->get()];
     }
-
 
     /**
      * Store a newly created resource in storage.
