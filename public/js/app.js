@@ -1908,8 +1908,6 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1941,42 +1939,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.fetchData();
-  },
   data: function data() {
     return {
-      loads: [],
-      routes: []
+      loads: []
     };
   },
   methods: {
-    fetchData: function fetchData() {
+    showPosts: function showPosts() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/loads/').then(function (response) {
-        _this.routes = response.data['routes'];
-        _this.loads = response.data['loads'];
+      axios.get('/api/loads/').then(function (response) {
+        _this.loads = response.data;
         console.log(response.data);
-      })["catch"](function (err) {
-        console.log(err);
       });
     }
+  },
+  mounted: function mounted() {
+    this.showPosts();
   }
 });
 
@@ -37638,34 +37618,26 @@ var render = function() {
             _c("div", { staticClass: "tasks-list" }, [
               _c(
                 "table",
-                { staticClass: "table" },
-                _vm._l(_vm.routes, function(route) {
-                  return _c("thead", { key: route.id }, [
-                    _c("tr", [
-                      _c("th", { attrs: { scope: "col" } }, [
-                        _vm._v(_vm._s(route.date))
-                      ]),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } }),
-                      _vm._v(" "),
-                      _c("th", { attrs: { scope: "col" } })
-                    ])
+                { staticClass: "table table-sm" },
+                _vm._l(_vm.loads, function(load) {
+                  return _c("tr", [
+                    _c("th", [_vm._v(_vm._s(load.routes[0].date) + "  ")]),
+                    _vm._v(" "),
+                    _c("th", [
+                      _vm._v(
+                        _vm._s(load.routes[0].from) +
+                          " - " +
+                          _vm._s(load.routes[0].to)
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v(_vm._s(load.name))]),
+                    _vm._v(" "),
+                    _c("th", [_vm._v(_vm._s(load.weight) + " т")])
                   ])
                 }),
                 0
-              ),
-              _vm._v(" "),
-              _c("img", {
-                staticClass: "img-responsive",
-                attrs: {
-                  src: "http://kedrovaya.in.ua/delivery/img/ukraine.jpg",
-                  alt: "Chania"
-                }
-              }),
-              _vm._v(" "),
-              _vm._m(2)
+              )
             ])
           ])
         ])
@@ -37691,24 +37663,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("span", { staticClass: "input-group-btn" }, [
         _c("button", { staticClass: "btn btn-success" }, [_vm._v("Додати")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table" }, [
-      _c("tbody", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("load")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Otto")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("@mdo")])
-        ])
       ])
     ])
   }

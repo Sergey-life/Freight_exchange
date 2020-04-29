@@ -13,26 +13,13 @@
                         </span>
                         </div>
                         <div class="tasks-list">
-                            <table class="table">
-                                <thead v-for="route in routes" :key="route.id">
-                                <tr>
-                                    <th scope="col">{{ route.date }}</th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
-                                    <th scope="col"></th>
+                            <table class="table table-sm">
+                                <tr  v-for="load in loads">
+                                    <th>{{ load.routes[0].date }}  </th>
+                                    <th>{{ load.routes[0].from }} - {{ load.routes[0].to }}</th>
+                                    <th>{{ load.name }}</th>
+                                    <th>{{ load.weight }} т</th>
                                 </tr>
-                                </thead>
-                                </table>
-                                    <img class="img-responsive" src="http://kedrovaya.in.ua/delivery/img/ukraine.jpg" alt="Chania">
-                                <table class="table">
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>load</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -43,29 +30,50 @@
 </template>
 
 <script>
-    import axios from 'axios';
     export default {
-        mounted() {
-            this.fetchData()
-        },
-        data () {
-            return {
-                loads: [],
-                routes: []
+        data(){
+            return{
+                loads: []
             }
         },
         methods: {
-            fetchData () {
-                axios.get('/api/loads/')
-                    .then((response) => {
-                        this.routes = response.data['routes']
-                        this.loads = response.data['loads']
-                        console.log(response.data)
-                    })
-                    .catch((err) => {
-                        console.log(err)
-                    })
+            showPosts(){
+                axios.get('/api/loads/').then(response => {
+                    this.loads = response.data
+                    console.log(response.data)
+                });
             }
+        },
+        mounted(){
+            this.showPosts();
         }
     }
 </script>
+
+<!--<script>-->
+<!--    import axios from 'axios';-->
+<!--    export default {-->
+<!--        mounted() {-->
+<!--            this.fetchData()-->
+<!--        },-->
+<!--        data () {-->
+<!--            return {-->
+<!--                // routes: []-->
+<!--                loads:[]-->
+<!--            }-->
+<!--        },-->
+<!--        methods: {-->
+<!--            fetchData () {-->
+<!--                axios.get('/api/loads/')-->
+<!--                    .then((response) => {-->
+<!--                        // this.routes = response.data-->
+<!--                        this.loads = response.data-->
+<!--                        console.log(response.data)-->
+<!--                    })-->
+<!--                    .catch((err) => {-->
+<!--                        console.log(err)-->
+<!--                    })-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->

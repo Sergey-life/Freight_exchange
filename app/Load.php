@@ -10,6 +10,6 @@ class Load extends Model
 
     public function routes()
     {
-        return $this->belongsTo('App\Route');
+        return $this->hasMany('App\Route');
     }
 }
