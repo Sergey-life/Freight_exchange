@@ -15,9 +15,8 @@ class LoadsController extends Controller
      */
     public function index()
     {
-//        return ['routes' => Route::with('load')->get(), 'loads' => Load::latest()->get()]
-        return $routes = Load::with('routes')->get();
-//          return Load::latest()->get();
+//       return Load::latest()->get();
+        return Load::with('routes')->get();
     }
 
     /**

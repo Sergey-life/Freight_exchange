@@ -8,8 +8,8 @@ class Route extends Model
 {
     protected $guarded = [];
 
-//    public function loads()
-//    {
-//        return $this->hasMany('App\Load');
-//    }
+    public function loads()
+    {
+        return $this->belongsTo('App\Load');
+    }
 }

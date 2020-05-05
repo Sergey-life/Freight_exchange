@@ -1908,6 +1908,8 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1939,24 +1941,93 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  mounted: function mounted() {
+    this.fetchData();
+  },
   data: function data() {
     return {
-      loads: []
+      loads: [],
+      load: {
+        date: '',
+        from: '',
+        to: '',
+        name: '',
+        weight: ''
+      }
     };
   },
   methods: {
-    showPosts: function showPosts() {
+    fetchData: function fetchData() {
       var _this = this;
 
-      axios.get('/api/loads/').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/loads').then(function (response) {
         _this.loads = response.data;
         console.log(response.data);
+      })["catch"](function (err) {
+        console.log(err);
       });
+    },
+    create: function create() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/loads', this.load).then(function (res) {
+        _this2.loads.unshift(res.data);
+
+        _this2.load.date = '';
+        _this2.load.from = '';
+        _this2.load.to = '';
+        _this2.load.name = '';
+        _this2.load.weight = '';
+        console.log(res.data);
+      })["catch"](function (err) {
+        console.log(err);
+      });
+      location.reload();
     }
-  },
-  mounted: function mounted() {
-    this.showPosts();
   }
 });
 
@@ -37613,32 +37684,330 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body" }, [
-            _vm._m(1),
+            _c("div", { staticClass: "input-group" }, [
+              _c("span", { staticClass: "input-group-btn" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: {
+                      type: "button",
+                      "data-toggle": "modal",
+                      "data-target": "#exampleModal"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      "\n                          Додати\n                        "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass: "modal fade",
+                    attrs: {
+                      id: "exampleModal",
+                      tabindex: "-1",
+                      role: "dialog",
+                      "aria-labelledby": "exampleModalLabel",
+                      "aria-hidden": "true"
+                    }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-dialog",
+                        attrs: { role: "document" }
+                      },
+                      [
+                        _c("div", { staticClass: "modal-content" }, [
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-body" }, [
+                            _c(
+                              "form",
+                              {
+                                attrs: {
+                                  type: "text",
+                                  action: "Loads.vue",
+                                  method: "post"
+                                }
+                              },
+                              [
+                                _c("div", { staticClass: "row" }, [
+                                  _c("div", { staticClass: "col" }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.load.date,
+                                          expression: "load.date"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Дата"
+                                      },
+                                      domProps: { value: _vm.load.date },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.load,
+                                            "date",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.load.from,
+                                          expression: "load.from"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Звідки"
+                                      },
+                                      domProps: { value: _vm.load.from },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.load,
+                                            "from",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.load.to,
+                                          expression: "load.to"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Куди"
+                                      },
+                                      domProps: { value: _vm.load.to },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.load,
+                                            "to",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.load.name,
+                                          expression: "load.name"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Назва"
+                                      },
+                                      domProps: { value: _vm.load.name },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.load,
+                                            "name",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.load.weight,
+                                          expression: "load.weight"
+                                        }
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        type: "text",
+                                        placeholder: "Вага"
+                                      },
+                                      domProps: { value: _vm.load.weight },
+                                      on: {
+                                        input: function($event) {
+                                          if ($event.target.composing) {
+                                            return
+                                          }
+                                          _vm.$set(
+                                            _vm.load,
+                                            "weight",
+                                            $event.target.value
+                                          )
+                                        }
+                                      }
+                                    })
+                                  ])
+                                ])
+                              ]
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "modal-footer" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-secondary",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal"
+                                }
+                              },
+                              [_vm._v("Закрити")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-success",
+                                attrs: {
+                                  type: "button",
+                                  "data-dismiss": "modal"
+                                },
+                                on: { click: _vm.create }
+                              },
+                              [_vm._v("Зберегти")]
+                            )
+                          ])
+                        ])
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("p")
+              ])
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "tasks-list" }, [
-              _c(
-                "table",
-                { staticClass: "table table-sm" },
-                _vm._l(_vm.loads, function(load) {
-                  return _c("tr", [
-                    _c("th", [_vm._v(_vm._s(load.routes[0].date) + "  ")]),
-                    _vm._v(" "),
-                    _c("th", [
-                      _vm._v(
-                        _vm._s(load.routes[0].from) +
-                          " - " +
-                          _vm._s(load.routes[0].to)
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v(_vm._s(load.name))]),
-                    _vm._v(" "),
-                    _c("th", [_vm._v(_vm._s(load.weight) + " т")])
-                  ])
+            _c(
+              "div",
+              { staticClass: "tasks-list" },
+              [
+                _vm._l(_vm.loads.slice(0, 1), function(load) {
+                  return _c(
+                    "table",
+                    { key: load.id, staticClass: "table table-sm" },
+                    [
+                      _c("tr", [
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v(_vm._s(load.routes[0].date))
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v(
+                            _vm._s(load.routes[0].from) +
+                              " - " +
+                              _vm._s(load.routes[0].to)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v(_vm._s(load.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("th", { attrs: { scope: "col" } }, [
+                          _vm._v(_vm._s(load.weight) + " т")
+                        ])
+                      ])
+                    ]
+                  )
                 }),
-                0
-              )
-            ])
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("iframe", {
+                  staticClass: "align-content-xl-center",
+                  staticStyle: { border: "0" },
+                  attrs: {
+                    src:
+                      "https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d20309.075323923767!2d30.4721233!3d50.4851493!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1588148756055!5m2!1sru!2sua",
+                    width: "668",
+                    height: "300",
+                    frameborder: "0",
+                    allowfullscreen: "",
+                    "aria-hidden": "false",
+                    tabindex: "0"
+                  }
+                }),
+                _c("br"),
+                _vm._v(" "),
+                _c("p"),
+                _vm._v(" "),
+                _c(
+                  "table",
+                  { staticClass: "table table-sm" },
+                  _vm._l(_vm.loads, function(load) {
+                    return _c("tr", [
+                      _c("td", [_vm._v(_vm._s(load.routes[0].date))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _vm._v(
+                          _vm._s(load.routes[0].from) +
+                            " - " +
+                            _vm._s(load.routes[0].to)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(load.name))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(load.weight) + " т")])
+                    ])
+                  }),
+                  0
+                )
+              ],
+              2
+            )
           ])
         ])
       ])
@@ -37658,12 +38027,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group" }, [
-      _c("input", { staticClass: "form-control", attrs: { type: "text" } }),
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Додати вантаж")]
+      ),
       _vm._v(" "),
-      _c("span", { staticClass: "input-group-btn" }, [
-        _c("button", { staticClass: "btn btn-success" }, [_vm._v("Додати")])
-      ])
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   }
 ]
