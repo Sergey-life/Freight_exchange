@@ -16,7 +16,7 @@ class LoadsController extends Controller
     public function index()
     {
 //       return Load::latest()->get();
-        return Load::with('routes')->get();
+        return Load::with('routes')->orderBy('id', 'desc')->take(35)->get();
     }
 
     /**

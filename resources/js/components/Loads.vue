@@ -40,7 +40,7 @@
                                 </div>
                               </div>
                             </div>
-                             <p></p>
+                            <p></p>
                         </span>
                         </div>
                         <div class="tasks-list">
@@ -81,7 +81,11 @@
             return {
                 loads: [],
                 load: {
-                    date: '', from: '', to: '', name: '', weight: ''
+                    date: '',
+                    from: '',
+                    to: '',
+                    name: '',
+                    weight: ''
                 }
             }
         },
