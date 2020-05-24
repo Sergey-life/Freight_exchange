@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Route;
 use Illuminate\Http\Request;
 use App\Load;
+use Illuminate\Support\Facades\DB;
+use App\Http\Requests\RouteRequest;
 
 class LoadsController extends Controller
 {
@@ -15,8 +17,14 @@ class LoadsController extends Controller
      */
     public function index()
     {
+        $query = DB::table('loads')
+            ->leftJoin('routes', 'routes.load_id', '=', 'loads.id')
+            ->orderBy('loads.id', 'desc')->take(35)
+            ->get();
+//
+        return response()->json($query);
 //       return Load::latest()->get();
-        return Load::with('routes')->orderBy('id', 'desc')->take(35)->get();
+//        return Load::with('loads')->orderBy('id', 'desc')->take(35)->get();
     }
 
     /**
@@ -25,7 +33,7 @@ class LoadsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RouteRequest $request)
     {
         $load = new Load();
         $load->name = $request->name;
@@ -41,7 +49,7 @@ class LoadsController extends Controller
 
         $cargo_data = [$load, $route];
 
-        return $cargo_data;
+        return response()->json($cargo_data);
     }
 
     /**
@@ -80,9 +88,6 @@ class LoadsController extends Controller
         $load = Load::findOrFail($id);
         $load->delete();
 
-        $route = Route::findOrFail($id);
-        $route->delete();
-
-        return 204;
+        return "Запись удалена!!!";
     }
 }

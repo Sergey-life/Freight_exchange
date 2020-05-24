@@ -7,9 +7,4 @@ use Illuminate\Database\Eloquent\Model;
 class Route extends Model
 {
     protected $guarded = [];
-
-    public function loads()
-    {
-        return $this->belongsTo('App\Load');
-    }
 }

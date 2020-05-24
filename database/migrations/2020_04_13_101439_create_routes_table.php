@@ -18,7 +18,7 @@ class CreateRoutesTable extends Migration
             $table->string('from');
             $table->string('to');
             $table->string('date');
-            $table->integer('load_id')->unsigned();
+            $table->integer('load_id');
             $table->timestamps();
         });
     }

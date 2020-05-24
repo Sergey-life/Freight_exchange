@@ -1908,8 +1908,6 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1983,14 +1981,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.fetchData();
-  },
   data: function data() {
     return {
-      loads: [],
+      loads: '',
       load: {
         date: '',
         from: '',
@@ -2000,11 +1995,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  mounted: function mounted() {
+    this.fetchData();
+  },
   methods: {
     fetchData: function fetchData() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/loads').then(function (response) {
+      axios.get('/api/loads').then(function (response) {
         _this.loads = response.data;
         console.log(response.data);
       })["catch"](function (err) {
@@ -2014,19 +2012,15 @@ __webpack_require__.r(__webpack_exports__);
     create: function create() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/loads', this.load).then(function (res) {
+      this.fetchData();
+      axios.post('/api/loads', this.load).then(function (res) {
         _this2.loads.unshift(res.data);
 
-        _this2.load.date = '';
-        _this2.load.from = '';
-        _this2.load.to = '';
-        _this2.load.name = '';
-        _this2.load.weight = '';
+        _this2.load.date = '', _this2.load.from = '', _this2.load.to = '', _this2.load.name = '', _this2.load.weight = '';
         console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
       });
-      location.reload();
     }
   }
 });
@@ -37698,7 +37692,7 @@ var render = function() {
                   },
                   [
                     _vm._v(
-                      "\n                          Додати\n                        "
+                      "\n                          Дабавить\n                        "
                     )
                   ]
                 ),
@@ -37781,7 +37775,7 @@ var render = function() {
                                       staticClass: "form-control",
                                       attrs: {
                                         type: "text",
-                                        placeholder: "Звідки"
+                                        placeholder: "Откуда"
                                       },
                                       domProps: { value: _vm.load.from },
                                       on: {
@@ -37811,7 +37805,7 @@ var render = function() {
                                       staticClass: "form-control",
                                       attrs: {
                                         type: "text",
-                                        placeholder: "Куди"
+                                        placeholder: "Куда"
                                       },
                                       domProps: { value: _vm.load.to },
                                       on: {
@@ -37841,7 +37835,7 @@ var render = function() {
                                       staticClass: "form-control",
                                       attrs: {
                                         type: "text",
-                                        placeholder: "Назва"
+                                        placeholder: "Название груза"
                                       },
                                       domProps: { value: _vm.load.name },
                                       on: {
@@ -37871,7 +37865,7 @@ var render = function() {
                                       staticClass: "form-control",
                                       attrs: {
                                         type: "text",
-                                        placeholder: "Вага"
+                                        placeholder: "Вес"
                                       },
                                       domProps: { value: _vm.load.weight },
                                       on: {
@@ -37903,7 +37897,7 @@ var render = function() {
                                   "data-dismiss": "modal"
                                 }
                               },
-                              [_vm._v("Закрити")]
+                              [_vm._v("Закрыть")]
                             ),
                             _vm._v(" "),
                             _c(
@@ -37916,61 +37910,52 @@ var render = function() {
                                 },
                                 on: { click: _vm.create }
                               },
-                              [_vm._v("Зберегти")]
+                              [_vm._v("Сохоанить")]
                             )
                           ])
                         ])
                       ]
                     )
                   ]
-                ),
-                _vm._v(" "),
-                _c("p")
+                )
               ])
             ]),
+            _vm._v(" "),
+            _c("br"),
             _vm._v(" "),
             _c(
               "div",
               { staticClass: "tasks-list" },
               [
                 _vm._l(_vm.loads.slice(0, 1), function(load) {
-                  return _c(
-                    "table",
-                    { key: load.id, staticClass: "table table-sm" },
-                    [
-                      _c("tr", [
-                        _c("th", { attrs: { scope: "col" } }, [
-                          _vm._v(_vm._s(load.routes[0].date))
-                        ]),
-                        _vm._v(" "),
-                        _c("th", { attrs: { scope: "col" } }, [
-                          _vm._v(
-                            _vm._s(load.routes[0].from) +
-                              " - " +
-                              _vm._s(load.routes[0].to)
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("th", { attrs: { scope: "col" } }, [
-                          _vm._v(_vm._s(load.name))
-                        ]),
-                        _vm._v(" "),
-                        _c("th", { attrs: { scope: "col" } }, [
-                          _vm._v(_vm._s(load.weight) + " т")
-                        ])
+                  return _c("table", { staticClass: "table table-sm" }, [
+                    _c("tr", [
+                      _c("th", { attrs: { scope: "col" } }, [
+                        _vm._v(_vm._s(load.date))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { attrs: { scope: "col" } }, [
+                        _vm._v(_vm._s(load.from) + " - " + _vm._s(load.to))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { attrs: { scope: "col" } }, [
+                        _vm._v(_vm._s(load.name))
+                      ]),
+                      _vm._v(" "),
+                      _c("th", { attrs: { scope: "col" } }, [
+                        _vm._v(_vm._s(load.weight) + " т")
                       ])
-                    ]
-                  )
+                    ])
+                  ])
                 }),
                 _vm._v(" "),
                 _c("hr"),
                 _vm._v(" "),
                 _c("iframe", {
-                  staticClass: "align-content-xl-center",
                   staticStyle: { border: "0" },
                   attrs: {
                     src:
-                      "https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d20309.075323923767!2d30.4721233!3d50.4851493!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1588148756055!5m2!1sru!2sua",
+                      "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2857730.944967061!2d30.347695014303085!3d50.1025413808885!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1590056556645!5m2!1sru!2sua",
                     width: "668",
                     height: "300",
                     frameborder: "0",
@@ -37979,23 +37964,18 @@ var render = function() {
                     tabindex: "0"
                   }
                 }),
-                _c("br"),
                 _vm._v(" "),
-                _c("p"),
+                _c("br"),
                 _vm._v(" "),
                 _c(
                   "table",
                   { staticClass: "table table-sm" },
                   _vm._l(_vm.loads, function(load) {
                     return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(load.routes[0].date))]),
+                      _c("td", [_vm._v(_vm._s(load.date))]),
                       _vm._v(" "),
                       _c("td", [
-                        _vm._v(
-                          _vm._s(load.routes[0].from) +
-                            " - " +
-                            _vm._s(load.routes[0].to)
-                        )
+                        _vm._v(_vm._s(load.from) + " - " + _vm._s(load.to))
                       ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(load.name))]),
@@ -38020,7 +38000,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", [_vm._v("Біржа вантажів")])
+      _c("h3", [_vm._v("Биржа грузов")])
     ])
   },
   function() {
@@ -38031,7 +38011,7 @@ var staticRenderFns = [
       _c(
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
-        [_vm._v("Додати вантаж")]
+        [_vm._v("Добавить груз")]
       ),
       _vm._v(" "),
       _c(
@@ -50382,8 +50362,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/freight exchange/blog/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/freight exchange/blog/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/uetsmedia/Desktop/freight exchange/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/uetsmedia/Desktop/freight exchange/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
